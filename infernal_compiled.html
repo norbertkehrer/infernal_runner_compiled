@@ -1,0 +1,66 @@
+<html>
+
+<head>
+	<title>Infernal Runner Compiled to JavaScript</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</head>
+
+<body style="background: #222222; color: turquoise; font-family: Arial;">
+	<div style="background-color: #222222;">
+		<h1 style=" color: red;">Infernal Runner Compiled to JavaScript</h1>
+		<div style="width: 700px; text-align: left;">
+			<p>
+				This is a JavaScript port of the Amstrad CPC game "Infernal Runner" made by Eric Chahi in 1985.
+				It is built from the virtual machine interpreter code of Gregory Montoir. Norbert Kehrer compiled the
+				bytecode to native JavaScript in order to eliminate the intrepretive layer and having the whole game as
+				a pure JavaScript program.
+			</p>
+			<p>
+				Use the arrow keys to control the player and Space or Enter to jump.
+			</p>
+		</div>
+		<div align="center" style="width: 384px;">
+			<canvas id="screen" width="320" height="200" style="width: 640px; height: 400px;"></canvas>
+			<p />
+			<div align="left">
+				<input type="checkbox" onclick="onInfiniteLives()" id="infiniteLivesCheckbox">Infinite Lives</input>
+			</div>
+			<p />
+			<div align="left">
+				<input type="button" value="Pause" onclick="onPauseClick()" id="pauseButton" />
+				<input type="button" value="Reset" onclick="onResetClick()" id="resetButton" />
+				<input type="button" value="Unmute" onclick="onMuteClick()" id="muteButton" />
+			</div>
+		</div>
+		<script type="text/javascript" src="constants.js"></script>
+		<script type="text/javascript" src="functions.js"></script>
+		<script type="text/javascript" src="compiled_code.js"></script>
+		<script type="text/javascript" src="function_tables.js"></script>
+		<script type="text/javascript" src="infernal_compiled.js"></script>
+		<script type="text/javascript">
+			init("screen");
+			function onPauseClick() {
+				if (pause_game()) {
+					pauseButton.value = "Play";
+				} else {
+					pauseButton.value = "Pause";
+				}
+			}
+			function onResetClick() {
+				reset();
+			}
+			function onMuteClick() {
+				if (mute()) {
+					muteButton.value = "Unmute";
+				} else {
+					muteButton.value = "Mute";
+				}
+			}
+			function onInfiniteLives() {
+				set_infinite_lifes(infiniteLivesCheckbox.checked);
+			}
+		</script>
+	</div>
+</body>
+
+</html>
